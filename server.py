@@ -55,4 +55,6 @@ async def websocket_endpoint(websocket: WebSocket):
         await websocket.close()
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8081)
+    # Use PORT environment variable and listen on 0.0.0.0
+    port = int(os.environ.get("PORT", 8081))  # Default to 8081 if PORT is not set
+    uvicorn.run(app, host="0.0.0.0", port=port)
